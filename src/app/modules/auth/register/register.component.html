@@ -1,0 +1,123 @@
+<div class="h-screen !bg-gray-50">
+
+  <div class="responsive-content flex justify-between items-center bg-c_dark text-c_dark p-7">
+    <div>
+      <img src="logo.png" alt="" class="max-h-20">
+    </div>
+  </div>
+
+  <div class="container">
+
+    <div class="mb-5">
+      <h2>REGISTRARSE</h2>
+      <hr>
+    </div>
+
+    <div [formGroup]="form">
+      <div class="flex flex-wrap">
+
+        <div class="w-full sm:w-1/2 pr-1 pb-1">
+          <mat-form-field class="w-full">
+            <mat-label>Nombre de Usuario</mat-label>
+            <input matInput formControlName="username" type="text" maxlength="30">
+            <mat-error *ngIf="frmValidationUtils?.hasErrors('username')"
+              [innerHtml]="frmValidationUtils.getErrorMessages('username', 'Nombre de de Usuario')"></mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="w-full sm:w-1/2 pr-1 pb-1">
+          <mat-form-field class="w-full">
+            <mat-label>Contraseña</mat-label>
+            <input matInput formControlName="password" type="password">
+            <mat-error *ngIf="frmValidationUtils?.hasErrors('password')"
+              [innerHtml]="frmValidationUtils.getErrorMessages('password', 'Contraseña')"></mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="w-full sm:w-1/2 pr-1 pb-1">
+          <mat-form-field class="w-full">
+            <mat-label>Rol</mat-label>
+            <mat-select formControlName="rol">
+              <mat-option value="ROLE_CLIENTE">Cliente</mat-option>
+              <mat-option value="ROLE_ADMIN">Administrador</mat-option>
+            </mat-select>
+            <mat-error *ngIf="frmValidationUtils?.hasErrors('rol')"
+              [innerHtml]="frmValidationUtils.getErrorMessages('rol', 'Rol')"></mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="w-full sm:w-1/2 pr-1 pb-1">
+          <mat-form-field class="w-full">
+            <mat-label>Identificación</mat-label>
+            <input matInput formControlName="identificacion" type="text">
+            <mat-error *ngIf="frmValidationUtils?.hasErrors('identificacion')"
+              [innerHtml]="frmValidationUtils.getErrorMessages('identificacion', 'Identificación')"></mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="w-full sm:w-1/2 pr-1 pb-1">
+          <mat-form-field class="w-full">
+            <mat-label>Edad</mat-label>
+            <input matInput formControlName="edad" type="number">
+            <mat-error *ngIf="frmValidationUtils?.hasErrors('edad')"
+              [innerHtml]="frmValidationUtils.getErrorMessages('edad', 'Edad')"></mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="w-full sm:w-1/2 pr-1 pb-1">
+          <mat-form-field class="w-full">
+            <mat-label>Género</mat-label>
+            <mat-select formControlName="genero">
+              <mat-option value="Masculino">Masculino</mat-option>
+              <mat-option value="Femenino">Femenino</mat-option>
+            </mat-select>
+            <mat-error *ngIf="frmValidationUtils?.hasErrors('genero')"
+              [innerHtml]="frmValidationUtils.getErrorMessages('genero', 'Género')"></mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="w-full sm:w-1/2 pr-1 pb-1">
+          <mat-form-field class="w-full">
+            <mat-label>Dirección</mat-label>
+            <input matInput formControlName="direccion" type="text">
+            <mat-error *ngIf="frmValidationUtils?.hasErrors('direccion')"
+              [innerHtml]="frmValidationUtils.getErrorMessages('direccion', 'Dirección')"></mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="w-full sm:w-1/2 pr-1 pb-1">
+          <mat-form-field class="w-full">
+            <mat-label>Correo</mat-label>
+            <input matInput formControlName="email" type="email">
+            <mat-error *ngIf="frmValidationUtils?.hasErrors('email')"
+              [innerHtml]="frmValidationUtils.getErrorMessages('email', 'Correo')"></mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="w-full sm:w-1/2 pr-1 pb-1">
+          <mat-form-field class="w-full">
+            <mat-label>Teléfono</mat-label>
+            <input matInput formControlName="telefono" type="text">
+            <mat-error *ngIf="frmValidationUtils?.hasErrors('telefono')"
+              [innerHtml]="frmValidationUtils.getErrorMessages('telefono', 'Teléfono')"></mat-error>
+          </mat-form-field>
+        </div>
+
+
+        <div class="w-full">
+          <div class="flex gap-1">
+            <button mat-flat-button class="!bg-c_dark !text-white !text-lg"
+            (click)="onBack()">Tengo una cuenta</button>
+
+            <button mat-flat-button class="!bg-c_primary !text-white !text-lg"
+              (click)="onRegister()">Registrar</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+</div>
+

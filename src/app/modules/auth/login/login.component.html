@@ -1,0 +1,51 @@
+<div class="h-screen !bg-gray-50">
+
+  <div class="responsive-content flex justify-between items-center bg-c_dark text-c_dark p-7">
+    <div>
+      <img src="logo.png" alt="" class="max-h-20">
+    </div>
+  </div>
+
+  <div class="container">
+    <div [formGroup]="form">
+      <div class="flex flex-col">
+
+        <div class="mb-5">
+          <h2>INICIAR SESIÓN</h2>
+          <hr>
+        </div>
+
+        <div class="w-full sm:w-1/2 mb-1 mt-3">
+          <mat-form-field class="w-full">
+            <mat-label>Username</mat-label>
+            <input matInput formControlName="username" type="text" maxlength="45" (keypress)="onKeyEnter($event)">
+            <mat-error *ngIf="frmValidationUtils?.hasErrors('username')"
+              [innerHtml]="frmValidationUtils.getErrorMessages('username', 'Username')"></mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="w-full sm:w-1/2 mb-1">
+          <mat-form-field class="w-full">
+            <mat-label>Password</mat-label>
+            <input matInput formControlName="password" type="password" (keypress)="onKeyEnter($event)">
+            <mat-error *ngIf="frmValidationUtils?.hasErrors('password')"
+              [innerHtml]="frmValidationUtils.getErrorMessages('password', 'Password')"></mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="w-full sm:w-1/2 pt-3">
+          <div class="flex justify-center gap-1">
+            <button mat-flat-button class="!bg-c_red !text-white !text-lg" (click)="onLogin()">Acceder</button>
+
+            <button mat-flat-button class="!bg-c_primary !text-white !text-lg"
+              (click)="onRegister()">Registrarse</button>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+
+</div>

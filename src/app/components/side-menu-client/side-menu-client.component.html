@@ -1,0 +1,182 @@
+<div class="h-screen overflow-hidden flex items-center justify-center" style="background: #edf2f7;">
+  <div class="flex bg-c_light w-full h-screen">
+    <div class="w-3/12 bg-white rounded p-3 shadow-lg !min-w-90 md:!max-w-90 md:!min-w-90" *ngIf="isOpen">
+      <div class="flex flex-col min-h-screen">
+
+        <div>
+          <div class="flex items-center space-x-4 p-2 mb-5 mt-5">
+            <div>
+              <mat-icon class="!icon-size-18 !rounded-full">account_circle</mat-icon>
+            </div>
+            <div>
+              <div class="font-semibold text-xl text-gray-700 capitalize font-poppins tracking-wide">
+                {{ infoUsuario?.nombre_Usuario}}
+              </div>
+              <div class="text-sm">{{infoUsuario?.rol }}</div>
+
+              <span class="text-sm tracking-wide flex items-center space-x-1">
+                <svg class="h-4 text-green-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                  stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                </svg><span class="text-gray-600">Verified</span>
+              </span>
+
+            </div>
+          </div>
+          <div class="pt-4 pb-4">
+            <hr>
+          </div>
+
+          <ul class="space-y-2 text-md">
+
+            <li>
+
+              <div class="text-gray-700 font-medium">
+                <p class="text-md font-semibold">Preferencias</p>
+                <hr>
+
+                <div class="mt-5">
+                  <form [formGroup]="form">
+
+                    <div class="flex flex-wrap">
+
+                      <div class="w-full pr-1 pb-1">
+                        <mat-form-field class="w-full">
+                          <mat-label>Tipo prenda</mat-label>
+                          <input matInput formControlName="tipoPrenda" type="text">
+                          <mat-error *ngIf="frmValidationUtils?.hasErrors('tipoPrenda')"
+                            [innerHtml]="frmValidationUtils.getErrorMessages('tipoPrenda', 'Tipo prenda')"></mat-error>
+                        </mat-form-field>
+                      </div>
+
+                      <div class="w-full pr-1 pb-1">
+                        <mat-form-field class="w-full">
+                          <mat-label>Color</mat-label>
+                          <input matInput formControlName="colorPrenda" type="text">
+                          <mat-error *ngIf="frmValidationUtils?.hasErrors('colorPrenda')"
+                            [innerHtml]="frmValidationUtils.getErrorMessages('colorPrenda', 'Color')"></mat-error>
+                        </mat-form-field>
+                      </div>
+
+                      <div class="w-full pr-1 pb-1">
+                        <mat-form-field class="w-full">
+                          <mat-label>Talla</mat-label>
+                          <mat-select formControlName="talla">
+                            <mat-option *ngFor="let item of tallas" [value]="item">{{ item }}</mat-option>
+                          </mat-select>
+                          <mat-error *ngIf="frmValidationUtils?.hasErrors('talla')"
+                            [innerHtml]="frmValidationUtils.getErrorMessages('talla', 'Talla')"></mat-error>
+                        </mat-form-field>
+                      </div>
+
+                      <div class="w-full pr-1 pb-1">
+                        <mat-form-field class="w-full">
+                          <mat-label>Categoría</mat-label>
+                          <mat-select formControlName="categoria">
+                            <mat-option *ngFor="let item of categorias" [value]="item.idCategoria">{{
+                              item.nombreCategoria }}</mat-option>
+                          </mat-select>
+                          <mat-error *ngIf="frmValidationUtils?.hasErrors('categoria')"
+                            [innerHtml]="frmValidationUtils.getErrorMessages('categoria', 'Categoría')"></mat-error>
+                        </mat-form-field>
+                      </div>
+
+                      <div class="w-full pr-1 pb-1">
+                        <mat-form-field class="w-full">
+                          <mat-label>Marca</mat-label>
+                          <mat-select formControlName="marca">
+                            <mat-option *ngFor="let item of marcas" [value]="item.idMarca">{{ item.nombreMarca
+                              }}</mat-option>
+                          </mat-select>
+                          <mat-error *ngIf="frmValidationUtils?.hasErrors('marca')"
+                            [innerHtml]="frmValidationUtils.getErrorMessages('marca', 'Marca')"></mat-error>
+                        </mat-form-field>
+                      </div>
+
+                      <div class="w-full mt-2">
+                        <div class="flex gap-1">
+                          <button mat-flat-button class="!bg-c_primary !text-white !text-lg" (click)="onClickGuardar()">Guardar</button>
+
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+
+            </li>
+
+          </ul>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="w-full">
+      <div id="contenido" class="flex flex-col h-screen overflow-hidden">
+
+        <!-- Contenido Principal -->
+        <div class="flex flex-col flex-1 overflow-hidden">
+          <div class="flex justify-between items-center bg-c_dark text-white p-2">
+            <div class="flex items-center">
+              <div class="mt-4">
+                <button mat-icon-button (click)="toggleSidebar()"
+                  class="flex mb-4 border rounded p-2 hover:scale-125 !text-white">
+                  <mat-icon>menu</mat-icon>
+                </button>
+              </div>
+              <div>
+                <img src="logo.png" alt="" class="max-h-20">
+              </div>
+            </div>
+            <div class="flex items-center pr-5">
+
+              <div class="flex gap-5">
+
+                <button mat-icon-button class="!text-white hover:scale-125 hover:!bg-c_secondary" matTooltip="Ver catálogo"
+                  aria-label="Example icon-button with a menu" (click)="onVerCatalogo()">
+                  <mat-icon>checkroom</mat-icon>
+                </button>
+
+                <button mat-icon-button class="!text-white hover:scale-125 hover:!bg-c_secondary" matTooltip="Ver carrito"
+                  aria-label="Example icon-button with a menu" (click)="onVerCarrito()">
+                  <mat-icon>shopping_cart</mat-icon>
+                </button>
+
+                <button mat-icon-button [matMenuTriggerFor]="menu" class="!text-white hover:scale-125 hover:!bg-c_secondary"
+                  aria-label="Example icon-button with a menu">
+                  <mat-icon>account_circle</mat-icon>
+                </button>
+
+                <mat-menu #menu="matMenu" class="!min-w-64">
+                  <button mat-menu-item (click)="onLogout()">
+                    <mat-icon>closed</mat-icon>
+                    <span>Cerrar sesión</span>
+                  </button>
+                </mat-menu>
+              </div>
+            </div>
+          </div>
+
+          <!-- Contenido con scroll -->
+          <div class="flex-1 overflow-auto container">
+            <router-outlet></router-outlet>
+          </div>
+        </div>
+
+        <!-- Footer -->
+        <div *ngIf="!mobile" class="mt-auto">
+          <div class="bg-c_dark text-white p-2">
+            <div class="flex flex-wrap justify-between items-center text-md">
+              <div class="p-0">
+                LOOKUP © Todos los derechos reservados
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

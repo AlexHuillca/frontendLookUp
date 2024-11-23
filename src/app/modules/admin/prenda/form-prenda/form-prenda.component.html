@@ -1,0 +1,113 @@
+<div>
+  <div>
+    <h3>{{ prenda? 'Editar': 'Nueva' }} Prenda</h3>
+    <hr />
+  </div>
+
+  <!-- Formulario -->
+  <div class="mt-3">
+    <div [formGroup]="form">
+      <div class="flex flex-wrap">
+
+        <div class="w-full sm:w-1/2 pr-1 pb-1">
+          <mat-form-field class="w-full">
+            <mat-label>Nombre</mat-label>
+            <input matInput formControlName="nombrePrenda" type="text">
+            <mat-error *ngIf="frmValidationUtils?.hasErrors('nombrePrenda')"
+              [innerHtml]="frmValidationUtils.getErrorMessages('nombrePrenda', 'Nombre')"></mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="w-full sm:w-1/2 pr-1 pb-1">
+          <mat-form-field class="w-full">
+            <mat-label>Tipo</mat-label>
+            <input matInput formControlName="tipoPrenda" type="text">
+            <mat-error *ngIf="frmValidationUtils?.hasErrors('tipoPrenda')"
+              [innerHtml]="frmValidationUtils.getErrorMessages('tipoPrenda', 'Tipo')"></mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="w-full sm:w-1/2 pr-1 pb-1">
+          <mat-form-field class="w-full">
+            <mat-label>Color</mat-label>
+            <input matInput formControlName="colorPrenda" type="text">
+            <mat-error *ngIf="frmValidationUtils?.hasErrors('colorPrenda')"
+              [innerHtml]="frmValidationUtils.getErrorMessages('colorPrenda', 'Color')"></mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="w-full sm:w-1/2 pr-1 pb-1">
+          <mat-form-field class="w-full">
+            <mat-label>Talla</mat-label>
+            <mat-select formControlName="talla">
+              <mat-option *ngFor="let item of tallas" [value]="item">{{ item }}</mat-option>
+            </mat-select>
+            <mat-error *ngIf="frmValidationUtils?.hasErrors('talla')"
+              [innerHtml]="frmValidationUtils.getErrorMessages('talla', 'Talla')"></mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="w-full sm:w-1/2 pr-1 pb-1">
+          <mat-form-field class="w-full">
+            <mat-label>Precio Original</mat-label>
+            <input matInput formControlName="precioOriginal" type="number">
+            <mat-error *ngIf="frmValidationUtils?.hasErrors('precioOriginal')"
+              [innerHtml]="frmValidationUtils.getErrorMessages('precioOriginal', 'Precio Original')"></mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="w-full sm:w-1/2 pr-1 pb-1">
+          <mat-form-field class="w-full">
+            <mat-label>Precio Final</mat-label>
+            <input matInput formControlName="precioFinal" type="number">
+            <mat-error *ngIf="frmValidationUtils?.hasErrors('precioFinal')"
+              [innerHtml]="frmValidationUtils.getErrorMessages('precioFinal', 'Precio Final')"></mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="w-full sm:w-1/2 pr-1 pb-1">
+          <mat-form-field class="w-full">
+            <mat-label>Categoría</mat-label>
+            <mat-select formControlName="categoria">
+              <mat-option *ngFor="let item of categorias" [value]="item.idCategoria">{{ item.nombreCategoria }}</mat-option>
+            </mat-select>
+            <mat-error *ngIf="frmValidationUtils?.hasErrors('categoria')"
+              [innerHtml]="frmValidationUtils.getErrorMessages('categoria', 'Categoría')"></mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="w-full sm:w-1/2 pr-1 pb-1">
+          <mat-form-field class="w-full">
+            <mat-label>Marca</mat-label>
+            <mat-select formControlName="marca">
+              <mat-option *ngFor="let item of marcas" [value]="item.idMarca">{{ item.nombreMarca }}</mat-option>
+            </mat-select>
+            <mat-error *ngIf="frmValidationUtils?.hasErrors('marca')"
+              [innerHtml]="frmValidationUtils.getErrorMessages('marca', 'Marca')"></mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="w-full pr-1 pb-1">
+          <mat-form-field class="w-full">
+            <mat-label>Url de imagen</mat-label>
+            <input matInput formControlName="url" type="text">
+            <mat-error *ngIf="frmValidationUtils?.hasErrors('url')"
+              [innerHtml]="frmValidationUtils.getErrorMessages('url', 'Url de imagen')"></mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="w-full mt-2">
+          <div class="flex gap-1">
+            <button mat-flat-button class="!bg-c_primary !text-white !text-lg" (click)="onClickGuardar()">{{
+              prenda == null? 'Registrar': 'Actualizar' }}</button>
+
+            <button mat-flat-button class="!bg-c_dark !text-white !text-lg"
+              (click)="onClickVolver()">Volver</button>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>

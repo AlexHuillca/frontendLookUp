@@ -1,0 +1,110 @@
+<div class="h-screen overflow-hidden flex items-center justify-center" style="background: #edf2f7;">
+  <div class="flex bg-c_light w-full h-screen">
+    <div class="w-3/12 bg-white rounded p-3 shadow-lg !min-w-90 md:!max-w-90 md:!min-w-90" *ngIf="isOpen">
+      <div class="flex flex-col min-h-screen">
+
+        <div>
+          <div class="flex items-center space-x-4 p-2 mb-5 mt-5">
+            <div>
+              <mat-icon class="!icon-size-18 !rounded-full">account_circle</mat-icon>
+            </div>
+            <div>
+              <div class="font-semibold text-xl text-gray-700 capitalize font-poppins tracking-wide">
+
+                {{ infoUsuario?.nombre_Usuario}}
+              </div>
+              <div class="text-sm">{{infoUsuario?.rol }}</div>
+
+              <span class="text-sm tracking-wide flex items-center space-x-1">
+                <svg class="h-4 text-green-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                  stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                </svg><span class="text-gray-600">Verified</span>
+              </span>
+
+            </div>
+          </div>
+          <div class="pt-4 pb-4">
+            <hr>
+          </div>
+
+          <ul class="space-y-2 text-md">
+
+            <li>
+              <div (click)="onNavigateTo('/admin/prenda')" role="button"
+                class="flex items-center space-x-3 text-gray-700 p-2 rounded-md font-medium hover:bg-gray-200 {{ location.includes('/admin/prenda')? 'bg-gray-200': 'focus:bg-gray-200'}} focus:shadow-outline">
+                <span class="flex text-gray-600">
+                  <mat-icon></mat-icon>
+                </span>
+                <span>Gestionar Prendas</span>
+              </div>
+            </li>
+
+          </ul>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="w-full">
+      <div id="contenido" class="flex flex-col h-screen overflow-hidden">
+
+        <!-- Contenido Principal -->
+        <div class="flex flex-col flex-1 overflow-hidden">
+          <div class="flex justify-between items-center bg-c_dark text-white p-2">
+            <div class="flex items-center">
+              <div class="mt-4">
+                <button mat-icon-button (click)="toggleSidebar()"
+                  class="flex mb-4 border rounded p-2 hover:scale-125 !text-white">
+                  <mat-icon>menu</mat-icon>
+                </button>
+              </div>
+              <div>
+                <img src="logo.png" alt="" class="max-h-20">
+              </div>
+            </div>
+            <div class="flex items-center">
+              <div class="flex flex-col text-right pr-5">
+                <div>{{ infoUsuario?.nombres }} {{ infoUsuario?.apellidoPaterno }} {{ infoUsuario?.apellidoMaterno }}
+                </div>
+                <div class="text-md">{{ infoUsuario?.rol }}</div>
+              </div>
+
+              <div>
+                <button mat-icon-button [matMenuTriggerFor]="menu" class="!text-white"
+                  aria-label="Example icon-button with a menu">
+                  <mat-icon>more_vert</mat-icon>
+                </button>
+
+                <mat-menu #menu="matMenu" class="!min-w-64">
+                  <button mat-menu-item (click)="onLogout()">
+                    <mat-icon>closed</mat-icon>
+                    <span>Cerrar sesión</span>
+                  </button>
+                </mat-menu>
+              </div>
+            </div>
+          </div>
+
+          <!-- Contenido con scroll -->
+          <div class="flex-1 overflow-auto container">
+            <router-outlet></router-outlet>
+          </div>
+        </div>
+
+        <!-- Footer -->
+        <div *ngIf="!mobile" class="mt-auto">
+          <div class="bg-c_dark text-white p-2">
+            <div class="flex flex-wrap justify-between items-center text-md">
+              <div class="p-0">
+                LOOKUP © Todos los derechos reservados
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
